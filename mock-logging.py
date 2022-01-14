@@ -43,6 +43,7 @@ if __name__ == "__main__":
 
     log_level_parameter = os.getenv("LOG_LEVEL", "info").lower()
     sleep_time = int(os.getenv("SLEEP_TIME", "10"))
+    application_id = os.getenv("APPLICATION_ID", "default")
 
     # Logging configuration.
 
@@ -55,9 +56,10 @@ if __name__ == "__main__":
     while True:
         counter += 1
         message = {
+            "applicationId": application_id,
             "counter": counter,
-            "timestamp": "{0}".format(datetime.datetime.now()),
             "sleepTime": sleep_time,
+            "timestamp": "{0}".format(datetime.datetime.now()),
         }
         logging.info(json.dumps(message))
         time.sleep(10)
